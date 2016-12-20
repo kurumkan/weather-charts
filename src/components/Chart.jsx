@@ -11,7 +11,7 @@ export default class Chart extends Component {
 	render(){
 		var {data, color} = this.props;
 		return (			
-			<div className='text-center'>
+			<div>
 				<Sparklines height={120} width={180} data={data}>
 					<SparklinesLine color={color}/>
 					<SparklinesReferenceLine type='avg'/>
