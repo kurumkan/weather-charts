@@ -1,3 +1,4 @@
+//wrapper component
 import React, { Component } from 'react';
 
 import SearchBar from '../containers/search_bar';
@@ -9,8 +10,7 @@ export default class App extends Component {
 		<div className='row'>
 			<h1>Weather Charts By City (Japan)</h1>
 			<SearchBar/>	
-			<WeatherList/>	
-		
+			<WeatherList/>			
 		</div>
     );
   }

@@ -22794,7 +22794,7 @@
 	var ROOT_URL = 'http://api.openweathermap.org/data/2.5/forecast?appid=' + API_KEY + '&q=';
 
 	var fetchWeather = exports.fetchWeather = function fetchWeather(city) {
-		var url = ROOT_URL + city + ',us';
+		var url = ROOT_URL + city + ',jp';
 
 		//promise
 		var request = _axios2.default.get(url);
@@ -24316,7 +24316,7 @@
 
 	var _Chart2 = _interopRequireDefault(_Chart);
 
-	var _GoogleMap = __webpack_require__(285);
+	var _GoogleMap = __webpack_require__(239);
 
 	var _GoogleMap2 = _interopRequireDefault(_GoogleMap);
 
@@ -37948,7 +37948,60 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(181)(module), (function() { return this; }())))
 
 /***/ },
-/* 239 */,
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactGoogleMaps = __webpack_require__(240);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GoogleMapCustom = function (_Component) {
+		_inherits(GoogleMapCustom, _Component);
+
+		function GoogleMapCustom() {
+			_classCallCheck(this, GoogleMapCustom);
+
+			return _possibleConstructorReturn(this, (GoogleMapCustom.__proto__ || Object.getPrototypeOf(GoogleMapCustom)).apply(this, arguments));
+		}
+
+		_createClass(GoogleMapCustom, [{
+			key: 'render',
+			value: function render() {
+				var _props = this.props,
+				    lat = _props.lat,
+				    lng = _props.lng;
+
+				return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
+					containerElement: _react2.default.createElement('div', { style: { height: '100%' } }),
+					googleMapElement: _react2.default.createElement(_reactGoogleMaps.GoogleMap, { defaultZoom: 12, defaultCenter: { lat: lat, lng: lng } })
+				});
+			}
+		}]);
+
+		return GoogleMapCustom;
+	}(_react.Component);
+
+	exports.default = GoogleMapCustom;
+
+/***/ },
 /* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41932,60 +41985,6 @@
 	};
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactGoogleMaps = __webpack_require__(240);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var GoogleMapCustom = function (_Component) {
-		_inherits(GoogleMapCustom, _Component);
-
-		function GoogleMapCustom() {
-			_classCallCheck(this, GoogleMapCustom);
-
-			return _possibleConstructorReturn(this, (GoogleMapCustom.__proto__ || Object.getPrototypeOf(GoogleMapCustom)).apply(this, arguments));
-		}
-
-		_createClass(GoogleMapCustom, [{
-			key: 'render',
-			value: function render() {
-				var _props = this.props,
-				    lat = _props.lat,
-				    lng = _props.lng;
-
-				return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
-					containerElement: _react2.default.createElement('div', { style: { height: '100%' } }),
-					googleMapElement: _react2.default.createElement(_reactGoogleMaps.GoogleMap, { defaultZoom: 12, defaultCenter: { lat: lat, lng: lng } })
-				});
-			}
-		}]);
-
-		return GoogleMapCustom;
-	}(_react.Component);
-
-	exports.default = GoogleMapCustom;
 
 /***/ }
 /******/ ]);

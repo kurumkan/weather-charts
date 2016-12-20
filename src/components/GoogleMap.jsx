@@ -1,3 +1,4 @@
+//display a tiny google map using react-google-map
 import React, {Component} from 'react';
 import {GoogleMapLoader, GoogleMap} from 'react-google-maps';
 

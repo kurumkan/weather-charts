@@ -1,3 +1,4 @@
+//display tiny chart using Sparklines
 import React, {Component} from 'react';
 import {Sparklines, SparklinesLine, SparklinesReferenceLine} from 'react-sparklines';
 import _ from 'lodash';
