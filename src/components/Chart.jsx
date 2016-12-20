@@ -11,12 +11,12 @@ export default class Chart extends Component {
 	render(){
 		var {data, color} = this.props;
 		return (			
-			<div>
+			<div className='text-center'>
 				<Sparklines height={120} width={180} data={data}>
 					<SparklinesLine color={color}/>
 					<SparklinesReferenceLine type='avg'/>
-				</Sparklines>				
-				{this.average(data)}				
+				</Sparklines>							
+				{this.average(data)}	
 			</div>
 		)
 	}
