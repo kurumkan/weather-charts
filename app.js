@@ -9,7 +9,7 @@ app.use(function(req, res, next){
 	}
 });
 
-app.use(express.static("public"));
+app.use(express.static(__dirname+"/public"));
 
 app.set("port", process.env.PORT||5000);
 
