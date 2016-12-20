@@ -7,8 +7,11 @@ export default class SearchBar extends Component {
 	}
 
 	render(){
-		return (
-			<form className='input-group'>
+		return (			
+			<form className='input-group'>			
+				<div>
+					form title goes here
+				</div>	
 				<input 
 					placeholder='Input a city name'
 				/>
