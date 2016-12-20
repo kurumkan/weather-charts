@@ -12,7 +12,7 @@ class WeatherList extends Component {
 	renderWeather(data){
 		var {name}=data.city;		
 
-		var tempArray=data.list.map((weather)=>weather.main.temp);
+		var tempArray=data.list.map((weather)=>weather.main.temp-273.15);
 		var humidityArray=data.list.map((weather)=>weather.main.humidity);
 		var pressureArray=data.list.map((weather)=>weather.main.pressure);
 
@@ -40,9 +40,9 @@ class WeatherList extends Component {
 				<table className='table table-hover'>
 					<thead>
 						<th>City</th>
-						<th>Temperature</th>
-						<th>Pressure</th>
-						<th>Humidity</th>
+						<th>Temperature (&#8451;)</th>
+						<th>Pressure (hPa)</th>
+						<th>Humidity (%)</th>
 					</thead>
 					<tbody>
 						{this.props.weather.map(this.renderWeather)}

@@ -73,7 +73,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _reducers = __webpack_require__(235);
+	var _reducers = __webpack_require__(239);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -22629,7 +22629,7 @@
 
 	var _search_bar2 = _interopRequireDefault(_search_bar);
 
-	var _weather_list = __webpack_require__(237);
+	var _weather_list = __webpack_require__(235);
 
 	var _weather_list2 = _interopRequireDefault(_weather_list);
 
@@ -24299,57 +24299,6 @@
 		value: true
 	});
 
-	var _redux = __webpack_require__(167);
-
-	var _reducerWeather = __webpack_require__(236);
-
-	var _reducerWeather2 = _interopRequireDefault(_reducerWeather);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var rootReducer = (0, _redux.combineReducers)({
-		weather: _reducerWeather2.default
-	});
-
-	exports.default = rootReducer;
-
-/***/ },
-/* 236 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	exports.default = function () {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-		var action = arguments[1];
-
-
-		switch (action.type) {
-
-			case 'FETCH_WEATHER':
-				return [action.payload.data].concat(_toConsumableArray(state));
-
-			default:
-				return state;
-		}
-	};
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/***/ },
-/* 237 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -24358,7 +24307,7 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _Chart = __webpack_require__(239);
+	var _Chart = __webpack_require__(236);
 
 	var _Chart2 = _interopRequireDefault(_Chart);
 
@@ -24389,7 +24338,7 @@
 
 
 				var tempArray = data.list.map(function (weather) {
-					return weather.main.temp;
+					return weather.main.temp - 273.15;
 				});
 				var humidityArray = data.list.map(function (weather) {
 					return weather.main.humidity;
@@ -24443,17 +24392,17 @@
 							_react2.default.createElement(
 								'th',
 								null,
-								'Temperature'
+								'Temperature (\u2103)'
 							),
 							_react2.default.createElement(
 								'th',
 								null,
-								'Pressure'
+								'Pressure (hPa)'
 							),
 							_react2.default.createElement(
 								'th',
 								null,
-								'Humidity'
+								'Humidity (%)'
 							)
 						),
 						_react2.default.createElement(
@@ -24487,7 +24436,77 @@
 	exports.default = (0, _reactRedux.connect)(mapDispatchToProps)(WeatherList);
 
 /***/ },
-/* 238 */
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactSparklines = __webpack_require__(237);
+
+	var _lodash = __webpack_require__(238);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Chart = function (_Component) {
+		_inherits(Chart, _Component);
+
+		function Chart() {
+			_classCallCheck(this, Chart);
+
+			return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).apply(this, arguments));
+		}
+
+		_createClass(Chart, [{
+			key: 'average',
+			value: function average(data) {
+				return _lodash2.default.round(_lodash2.default.sum(data) / data.length);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _props = this.props,
+				    data = _props.data,
+				    color = _props.color;
+
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_reactSparklines.Sparklines,
+						{ height: 120, width: 180, data: data },
+						_react2.default.createElement(_reactSparklines.SparklinesLine, { color: color }),
+						_react2.default.createElement(_reactSparklines.SparklinesReferenceLine, { type: 'avg' })
+					),
+					this.average(data)
+				);
+			}
+		}]);
+
+		return Chart;
+	}(_react.Component);
+
+	exports.default = Chart;
+
+/***/ },
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -25563,75 +25582,7 @@
 	;
 
 /***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactSparklines = __webpack_require__(238);
-
-	var _lodash = __webpack_require__(240);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Chart = function (_Component) {
-		_inherits(Chart, _Component);
-
-		function Chart() {
-			_classCallCheck(this, Chart);
-
-			return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).apply(this, arguments));
-		}
-
-		_createClass(Chart, [{
-			key: 'average',
-			value: function average(data) {}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _props = this.props,
-				    data = _props.data,
-				    color = _props.color;
-
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						_reactSparklines.Sparklines,
-						{ height: 120, width: 180, data: data },
-						_react2.default.createElement(_reactSparklines.SparklinesLine, { color: color }),
-						_react2.default.createElement(_reactSparklines.SparklinesReferenceLine, { type: 'avg' })
-					),
-					this.average(data)
-				);
-			}
-		}]);
-
-		return Chart;
-	}(_react.Component);
-
-	exports.default = Chart;
-
-/***/ },
-/* 240 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -37987,6 +37938,57 @@
 	}.call(this));
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(181)(module), (function() { return this; }())))
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _redux = __webpack_require__(167);
+
+	var _reducerWeather = __webpack_require__(240);
+
+	var _reducerWeather2 = _interopRequireDefault(_reducerWeather);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var rootReducer = (0, _redux.combineReducers)({
+		weather: _reducerWeather2.default
+	});
+
+	exports.default = rootReducer;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	exports.default = function () {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+		var action = arguments[1];
+
+
+		switch (action.type) {
+
+			case 'FETCH_WEATHER':
+				return [action.payload.data].concat(_toConsumableArray(state));
+
+			default:
+				return state;
+		}
+	};
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 /***/ }
 /******/ ]);
