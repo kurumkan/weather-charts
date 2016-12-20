@@ -10,7 +10,7 @@ export default class SearchBar extends Component {
 		return (			
 			<form className='input-group'>			
 				<div>
-					Form title goes here
+					Blah blah
 				</div>	
 				<input 
 					placeholder='Input a city name'
