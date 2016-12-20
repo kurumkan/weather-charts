@@ -1,5 +1,6 @@
 module.exports = {
   entry: [
+  'script!jquery/dist/jquery.min.js',
     './src/index.jsx'
   ],
   output: {
