@@ -22645,7 +22645,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22654,6 +22654,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(163);
+
+	var _redux = __webpack_require__(170);
+
 	var _search_bar = __webpack_require__(211);
 
 	var _search_bar2 = _interopRequireDefault(_search_bar);
@@ -22661,6 +22665,8 @@
 	var _weather_list = __webpack_require__(238);
 
 	var _weather_list2 = _interopRequireDefault(_weather_list);
+
+	var _index = __webpack_require__(212);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22672,35 +22678,47 @@
 
 
 	var App = function (_Component) {
-			_inherits(App, _Component);
+		_inherits(App, _Component);
 
-			function App() {
-					_classCallCheck(this, App);
+		function App() {
+			_classCallCheck(this, App);
 
-					return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+			return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+		}
+
+		_createClass(App, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.props.fetchWeather('Tokyo');
+				this.props.fetchWeather('Osaka');
+				this.props.fetchWeather('Kyoto');
 			}
+		}, {
+			key: 'render',
+			value: function render() {
 
-			_createClass(App, [{
-					key: 'render',
-					value: function render() {
-							return _react2.default.createElement(
-									'div',
-									{ className: 'row' },
-									_react2.default.createElement(
-											'h1',
-											null,
-											'Weather Charts By City (Japan)'
-									),
-									_react2.default.createElement(_search_bar2.default, null),
-									_react2.default.createElement(_weather_list2.default, null)
-							);
-					}
-			}]);
+				return _react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Weather Charts By City (Japan)'
+					),
+					_react2.default.createElement(_search_bar2.default, null),
+					_react2.default.createElement(_weather_list2.default, null)
+				);
+			}
+		}]);
 
-			return App;
+		return App;
 	}(_react.Component);
 
-	exports.default = App;
+	function mapDispatchToProps(dispatch) {
+		return (0, _redux.bindActionCreators)({ fetchWeather: _index.fetchWeather }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(App);
 
 /***/ },
 /* 211 */
